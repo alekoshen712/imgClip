@@ -15,8 +15,8 @@ class imgClip {
     this.canvasDidDraw = cfg.canvasDidDraw
     this.clipShape = cfg.clipShape || 'circle'
 
-    this.curScale = cfg.curScale
-    this.maxScale = cfg.maxScale
+    this.curScale = cfg.curScale || 1
+    this.maxScale = cfg.maxScale || 2
 
     // 绑定this
     this.mousedownCanvasImgEventHandle = this.mousedownCanvasImgEventHandle.bind(this)
