@@ -7,9 +7,8 @@
 5. 通过钩子可实现更加强大的功能
 
 ## demo
-![](demo.gif)
+![demo](demo.gif)
 
-## usage
 ```html
 <input type="file" id="fileInput">
 <input type="button" value="裁剪" id="btn">
@@ -17,6 +16,7 @@
 <img id="img1" width="100" height="100" style="position: absolute;top: 180px;left: 10px"/>
 <img id="img2" width="130" height="130" style="position: absolute;top: 180px;left: 120px"/>
 ```
+
 ```js
 import imgClip from './imgClip'
 
