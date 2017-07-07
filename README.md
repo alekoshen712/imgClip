@@ -43,7 +43,7 @@ fileInput.addEventListener('change', () => {
     maxScale: 3,
     // 当前放大尺寸, 默认为 1
     curScale: 2,
-    // 随访条的宽度,单位为px
+    // 缩放条的宽度,单位为px
     sliderWidth: 200,
     // 缩放条的位置,相对于container绝对定位,单位为px
     sliderTop: 120,
