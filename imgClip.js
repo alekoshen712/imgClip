@@ -2,6 +2,9 @@ class imgClip {
   constructor(cfg) {
     this.cfg = cfg
     this.container = cfg.container
+    this.container.style.width = cfg.width + 'px'
+    this.container.style.height = cfg.height + 'px'
+    this.container.style.position = 'relative'
     this.canvas = document.createElement('canvas')
     this.ctx = this.canvas.getContext('2d')
     this.offScreenCanvas = document.createElement('canvas')
@@ -10,8 +13,8 @@ class imgClip {
 
     this.file = cfg.file
 
-    this.img = new Image
-    this.bgImg = new Image
+    this.img = new Image()
+    this.bgImg = new Image()
     this.canvasDidDraw = cfg.canvasDidDraw
     this.clipShape = cfg.clipShape || 'circle'
 
@@ -34,8 +37,8 @@ class imgClip {
     this.destroy()
     this.initImg().then(() => {
       this.adjustImgSize()
-      this.initCanvas()
       this.initOffScreenCanvas()
+      this.initCanvas()
       this.initSlider()
       this.appendToDocument()
       this.bindEvent()
@@ -52,7 +55,7 @@ class imgClip {
   initUploadImg () {
     return new Promise(resolve => {
       this.img.onload = () => resolve()
-      let r = new FileReader
+      let r = new FileReader()
       r.readAsDataURL(this.file)
       r.onload = () => {
         this.img.src = r.result
@@ -86,8 +89,8 @@ class imgClip {
     this.slider.setAttribute('value', this.curScale)
     this.slider.setAttribute('step', 0.01)
     this.slider.style.display = 'block'
-    this.slider.style.width = '70%'
-    this.slider.style.position = 'relative'
+    this.slider.style.width = this.cfg.sliderWidth + 'px'
+    this.slider.style.position = 'absolute'
     this.slider.style.top = `${this.cfg.sliderTop}px`
     this.slider.style.left = `${this.cfg.sliderLeft}px`
   }
@@ -105,7 +108,7 @@ class imgClip {
   }
 
   getReaderData() {
-    let reader = new FileReader
+    let reader = new FileReader()
     reader.readAsDataURL(this.file)
     return new Promise((resolve) => {
       reader.onload = () => {
@@ -183,7 +186,6 @@ class imgClip {
   }
 
   bindSliderEvent() {
-    let that = this
     this.slider.addEventListener('change', this.changeSliderEventHandle)
     this.slider.addEventListener('mousedown', this.mousedownSliderEventHandle)
   }
@@ -239,6 +241,7 @@ class imgClip {
     }
     let sx = ((this.canvas.width - this.cfg.cWidth) / 2 - this.curDisX) * bl_x
     let sy = ((this.canvas.height - this.cfg.cHeight) / 2 - this.curDisY) * bl_y
+
     this.offScreenCtx.drawImage(this.img, sx, sy, this.offScreenCanvas.width * bl_x, this.offScreenCanvas.height * bl_y, 0, 0, this.offScreenCanvas.width, this.offScreenCanvas.height)
     return this.offScreenCanvas.toDataURL()
   }
